@@ -26,13 +26,21 @@ class App extends Component {
     });
   }
 
-  salvarDados(evento) {    
+  salvarDados(evento) {     
     evento.preventDefault();
+
+    var formData = {
+      nome: this.state.nome,
+      email: this.state.email,
+      senha: this.state.senha
+    };
+
     $.ajax({
       url: "http://localhost:8000/api/autor/cadastrar",
       dataType: 'JSON',
       type: "POST",
-      data: JSON.stringify({nome:this.state.nome, email:this.state.email, senha:this.state.senha}),
+      data: formData,
+      
       success: function (resposta) {
         console.log(resposta);
       },
